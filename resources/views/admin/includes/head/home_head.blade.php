@@ -13,6 +13,8 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('public/admin/dist/css/AdminLTE.min.css') }}">
   
+  
+  
   <!-- Custom Css -->
    <link rel="stylesheet" href="{{ asset('public/admin/dist/css/custom.css') }}">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -31,6 +33,11 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{ asset('public/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 
+  <!-- Alert box -->
+  <link rel="stylesheet" href="{{ asset('public/admin/dist/css/alertify.core.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/admin/dist/css/alertify.default.css') }}">
+  <!-- Alert box -->
+  
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>

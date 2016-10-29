@@ -14,3 +14,14 @@ and open the template in the editor.
     color:#fff;
 }
 
+
+.alertify {
+    background: #FFF;
+    border: 3px solid #333 !important;
+    border: 3px solid rgba(0,0,0,.7)!important;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px rgba(0,0,0,.3);
+    -webkit-background-clip: padding;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+}

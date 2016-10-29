@@ -58,6 +58,9 @@ $(function () {
 
 <script src="{{ URL::asset('public/admin/dist/js/custom.js') }}"></script>
 
+<!-- for alert box -->
+<script src="{{ URL::asset('public/admin/dist/js/alertify.js') }}"></script>
+
 <!-- jquery Validation Plugin -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 

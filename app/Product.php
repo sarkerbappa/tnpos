@@ -12,8 +12,14 @@ class Product extends Model
        return $all_products;
     }
     
-    static function create(){
-        DB::table('product_category_info')->insert($book_info);
+    /**
+     * Add Product Category
+     */
+    
+   
+    static function CreateProductCategory($category_info){
+        DB::table('product_category_info')->insert($category_info);
+       return response()->json(['success_massege'=>'Category Added Successfully']);
     }
     
 }

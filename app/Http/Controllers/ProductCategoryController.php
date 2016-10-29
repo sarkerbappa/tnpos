@@ -8,7 +8,7 @@ use App\Http\Requests;
 
 use App\Product;
 
-class ProductController extends Controller
+class ProductCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -40,8 +40,14 @@ class ProductController extends Controller
     {
         $category_name        = $request->category_name;
         $category_entry_date  = $request->category_entry_date;
-        
-        return response()->json(['success_massege'=>'Category Added Successfully']);  
+        $category_info = array(
+                'Product_Category_Name'        => $category_name,
+                'Entry_DateTime'         => $category_entry_date,
+                'Shop_Id'              => 1
+                );
+            // Insert data into database      
+       $respons =  Product::CreateProductCategory($category_info);
+       return $respons;  
     }
 
     /**
