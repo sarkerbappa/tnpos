@@ -17,7 +17,8 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
- 
+        $all_category_info = Product::getAllCategoryInfo();
+        return response()->json($all_category_info);
     }
 
     /**
@@ -29,6 +30,17 @@ class ProductCategoryController extends Controller
     {
        
     }
+
+    /**
+     * 
+     * @param Request $request
+     */
+    public function autocomplete($query){
+        $data = Product::autocomplet($query);
+        return response($data);
+    }
+
+    
 
     /**
      * Store a newly created resource in storage.

@@ -18,3 +18,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:api');
 
 Route::resource('api/product_category', 'ProductCategoryController');
+Route::get('/autocomplete/{id}', 'ProductCategoryController@autocomplete')->name('autocomplete');

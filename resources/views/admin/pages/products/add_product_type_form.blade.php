@@ -1,7 +1,53 @@
 @extends('admin.layout.table')
 @section('content')
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
 <section class="content">
-    
+ <script>
+  $( function() {
+    $( "#project" ).autocomplete({
+      minLength: 0,
+      source: function (request, response) {
+                $.ajax({
+                    type: 'GET',
+                    url: 'api/autocomplete/'+request.term,
+                    dataType: "json",
+                    cache: false,
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label:item.Product_Category_Name ,
+                                id: item.id,
+                            };
+                        }));
+                    },
+                });
+            },
+            
+      focus: function( event, ui ) {
+        $( "#project" ).val( ui.item.label );
+        return false;
+      },
+      select: function( event, ui ) {
+        $( "#project" ).val( ui.item.label );
+        $( "#project-id" ).val( ui.item.id );
+        return false;
+      }
+    })
+    .autocomplete( "instance" )._renderItem = function( ul, item ) {
+      return $( "<li>" )
+        .append( "<div>" + item.label + "</div>" )
+        .appendTo( ul );
+    };
+  } );
+  </script>
+  
+  
+  
+  
     @if (Session::get('category_added_success_massege'))
     <div class="bs-example col-md-9">
         <div class="alert alert-success fade in">
@@ -60,16 +106,20 @@
                     <div class="row form-group">
                         <div class="col-md-3 form-level"><label>Product Category <b class="mandetory_star">*</b> :</label></div>
                         <div class="col-sm-6">
-                            {{Form::select('book_supplier',array('L' => 'Large', 'S' => 'Small') , '', $attributes = array('class' => 'form-control'))}}
-                            <span class="text-red"></span>
+                            <input class="form-control" type="text" id="project">
+                            <input class="form-control" type="hidden" id="project-id">
                         </div>
+                        
+                        
+                        
                         <div class="col-sm-3">
                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addCategory">
                                 Add Category
                             </button>
                         </div>
                     </div>
-
+                    
+                    
                     <div class="row form-group">
                         <div class="col-md-3 form-level"><label>Product Sub Category <b class="mandetory_star">*</b> :</label></div>
                         <div class="col-sm-6">
@@ -106,7 +156,7 @@
             </div><!-- /.box -->
 
             
-            
+           
             
 
             <!--  ++++++++++++++++++++++++++++++++ Add Category  Modal+++++++++++++++++++++++++++++++++++++ -->
@@ -217,3 +267,4 @@
 </section><!-- /.content -->
 
 @stop
+

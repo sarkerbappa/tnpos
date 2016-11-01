@@ -22,5 +22,5 @@ Route::get('/allProductType', 'ProductsController@allProductType')->name('allPro
 Route::get('/addNewProductTypeForm', 'ProductsController@addNewProductTypeForm')->name('addNewProductTypeForm');
 Route::get('/addProductType', 'ProductsController@addProductType')->name('addProductType');
 
-// Add Product Category
-Route::post('/addCategory', 'ProductsController@addCategory')->name('addCategory');
+
+

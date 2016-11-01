@@ -1,4 +1,6 @@
 <!-- jQuery 2.2.3 -->
+
+
 <script src="{{ URL::asset('public/admin/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 
 <script>
@@ -56,16 +58,24 @@ $(function () {
 
 <!-- custom js -->
 
-<script src="{{ URL::asset('public/admin/dist/js/custom.js') }}"></script>
+
 
 <!-- for alert box -->
 <script src="{{ URL::asset('public/admin/dist/js/alertify.js') }}"></script>
 
+<!-- Type Head -->
+<script src="{{ URL::asset('public/admin/dist/js/typeahead/bloodhound.min.js') }}"></script>
+<script src="{{ URL::asset('public/admin/dist/js/typeahead/typeahead.bundle.min.js') }}"></script>
+<script src="{{ URL::asset('public/admin/dist/js/typeahead/typeahead.jquery.min.js') }}"></script>
+
 <!-- jquery Validation Plugin -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+
+<script src="{{ URL::asset('public/admin/dist/js/custom.js') }}"></script>
 
 <script>
   $.validate({
     lang: 'es'
   });
 </script>
+

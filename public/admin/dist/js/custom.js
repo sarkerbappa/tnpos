@@ -1,9 +1,6 @@
 
-$(document).ready(function () {
 
-});
-    
-
+//.....................Add category...................................................... 
 
 $("#category_submit").click(function (e) {
     event.preventDefault();
@@ -33,3 +30,17 @@ $("#category_submit").click(function (e) {
 
 
 
+
+//...........................................product category select....................................
+
+
+$("#select_category").keyup(function () {
+    var query = $("#select_category").val();
+    $.get('api/autocomplete/' + query,function (data, category){
+            console.log(JSON.stringify(data));
+    });
+});
+
+
+
+ 

@@ -17,11 +17,34 @@ and open the template in the editor.
 
 .alertify {
     background: #FFF;
-    border: 3px solid #333 !important;
-    border: 3px solid rgba(0,0,0,.7)!important;
-    border-radius: 5px;
+    border: 2px solid #333 !important;
+    border: 2px solid #3c8dbc!important;
+    border-radius:1px;
     box-shadow: 0 2px 2px rgba(0,0,0,.3);
-    -webkit-background-clip: padding;
-    -moz-background-clip: padding;
-    background-clip: padding-box;
+    -webkit-background-clip:5px;
+    -moz-background-clip: padding-box;
 }
+
+.alertify-button-ok{
+    background-color:#008d4c!important;
+}
+
+.tt-dataset{
+   background-color:#008d4c;
+   position: relative;
+   color:#111;
+   width:200px;
+   margin:1px auto 0 auto;
+   padding:5px;
+   border-radius:1px;
+}
+
+.tt-selectable:hover{
+   color:#fff;
+   cursor:pointer; 
+}
+.twitter-typeahead{
+    width:100%;
+    height:auto;
+}
+
