@@ -39,8 +39,14 @@ class ProductCategoryController extends Controller
         $data = Product::autocomplet($query);
         return response($data);
     }
-
     
+    /**
+     * Autocomplete Subcategory form
+     */
+
+    public function autocompleteSubCat($value,$sv){
+        return response($value,$sv);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -58,7 +64,7 @@ class ProductCategoryController extends Controller
                 'Shop_Id'              => 1
                 );
             // Insert data into database      
-       $respons =  Product::CreateProductCategory($category_info);
+       $respons =  Product::createProductCategory($category_info);
        return $respons;  
     }
 

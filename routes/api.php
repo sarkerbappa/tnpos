@@ -19,3 +19,5 @@ Route::get('/user', function (Request $request) {
 
 Route::resource('api/product_category', 'ProductCategoryController');
 Route::get('/autocomplete/{id}', 'ProductCategoryController@autocomplete')->name('autocomplete');
+Route::get('/autocomplete_sub_cat/{id}/{sv}', 'ProductCategoryController@autocompleteSubCat')->name('autocomplete_sub_cat');
+Route::resource('api/product_sub_category', 'ProductSubCategoryController');

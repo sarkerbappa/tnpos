@@ -15,6 +15,7 @@ class CreateProductSubCategoryInfoTable extends Migration
     {
         Schema::create('product_sub_category_info', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('Category_Id');
             $table->string('Product_Sub_Category_Name');
             $table->dateTime('Entry_DateTime');
             $table->string('Shop_Id');
