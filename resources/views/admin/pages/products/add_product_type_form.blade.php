@@ -1,5 +1,6 @@
 @extends('admin.layout.table')
 @section('content')
+
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -7,21 +8,18 @@
 <link rel="stylesheet" href="{{ asset('public/admin/dist/css/auto_suggetion.css') }}">
 
 
-
 <section class="content">
-    @if (Session::get('category_added_success_massege'))
+    @if (Session::get('product_add_success_massege'))
     <div class="bs-example col-md-9">
         <div class="alert alert-success fade in">
             <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <strong>Success!</strong> {{Session::get('category_added_success_massege')}}
+            <strong>Success!</strong> {{Session::get('product_add_success_massege')}}
         </div>
     </div>
     @endif
 
 
     <div class="row">
-        <!--<div class="col-md-1"></div>-->
-        <!-- left column -->
         <div class="col-md-11">
             <!-- general form elements -->
             <div class="box">
@@ -29,19 +27,40 @@
                     <h3 class="box-title">Add Product Type</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                {{Form::open(array('route' => 'addProductType', 'files' => true))}}
+                {{Form::open(array('route' => 'addProduct', 'files' => true))}}
                 <div class="box-body">
+                    
+                     <div class="row form-group">
+                        <div class="col-md-3 form-level"><label>Product Code <b class="mandetory_star">*</b> :</label></div>
+                        <div class="col-md-6" id="product-code-error-dialog"> 
+                            <?php 
+                            $code = date("Ymdms",time());
+                            $entry_time = date("Y-m-d-m-s",time());
+                            ?>
+                            {{Form::text('product_code', $value= $code, $attributes = array('class' => 'form-control',
+                                                                                             'data-validation'=>'alphanumeric', 'data-validation-allowing'=>'-_ " "',
+                                                                                             'data-validation-error-msg'=>'Please Enter a Product Code',
+                                                                                             'data-validation-error-msg-container'=>'#product-code-error-dialog'
+                                                                                             ))}}
+                            <span class="text-red">{{$errors->first('product_code')}}</span>
+                             {{Form::hidden('shop_id', $value = "1",  $attributes = array('id'=>'shop_id'))}}
+                             {{Form::hidden('Entry_DateTime', $value = $entry_time,  $attributes = array('id'=>'entry_datetime'))}}
+                        </div>
+                    </div>
+                    
                     <div class="row form-group">
                         <div class="col-md-3 form-level"><label>Product Name <b class="mandetory_star">*</b> :</label></div>
                         <div class="col-md-6" id="product-name-error-dialog"> 
                             {{Form::text('product_name', '', $attributes = array('class' => 'form-control',
-                                                                                             'data-validation'=>'alphanumeric', 'data-validation-allowing'=>'-_',
+                                                                                             'data-validation'=>'alphanumeric', 'data-validation-allowing'=>'-_ " "',
                                                                                              'data-validation-error-msg'=>'Please Enter a Product Name',
                                                                                              'data-validation-error-msg-container'=>'#product-name-error-dialog'
                                                                                              ))}}
                             <span class="text-red">{{$errors->first('product_name')}}</span>
                         </div>
                     </div>
+                    
+                    <!--................................Product Description ................................-->
 
                     <div class="row form-group">
                         <div class="col-md-3 form-level"><label> Product Description:</label></div>
@@ -50,26 +69,41 @@
                             <span class="text-red">{{ $errors->first('product_description')}}</span>
                         </div>
                     </div>
+                    
+                    <!--................................Serialized/Non Serialized................................-->
 
                     <div class="row form-group">
                         <div class="col-md-3 form-level"><label> Serialized/Non Serialized:</label></div>
                         <div class="col-md-6"> 
                             <div class="form-group">
-                                {{Form::radio('Serialized', 1, '', array('class' => 'minimal-red'))}}
+                                {{Form::radio('Serialized', 1, true, array('class' => 'minimal-red'))}}
                                 Serialized
                                 {{Form::radio('Serialized',0,'', array('class' => 'minimal-red'))}}
                                 Non Serialized  
                             </div>
-                            <span class="text-red">{{$errors->first('book_sub_auth')}}</span>
+                            <span class="text-red">{{$errors->first('Serialized')}}</span>
                         </div>
                     </div>
 
+                    <!--....... ........................... Product category .................................-->
+                    
                     <div class="row form-group">
                         <div class="col-md-3 form-level"><label>Product Category <b class="mandetory_star">*</b> :</label></div>
-                        <div class="col-sm-6">
-                            <input class="form-control" type="text" id="category_select_add_product_page">
-                            <input class="form-control" type="hidden" name="category_id" id="category_select_add_product_page-id">
+                        <div class="col-md-6" id="product-category-error-dialog"> 
+                            {{Form::text('category_name', '',  $attributes = array(
+                                                                   'class' => 'form-control',
+                                                          'data-validation'=>'alphanumeric', 'data-validation-allowing'=>'-_ " "',
+                                                'data-validation-error-msg'=>'Please Enter a Category Name',
+                                      'data-validation-error-msg-container'=>'#product-category-error-dialog',
+                                                                        'id'=>'category_select_add_product_page'
+                                                                                   ))}}
+                            {{Form::hidden('category_id', '',  $attributes = array(
+                                                                     'id'=>'category_select_add_product_page-id'
+                                                                          ))}}
+
+                            <span class="text-red">{{$errors->first('category_name')}}</span>
                         </div>
+
                         <div class="col-sm-3">
                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addCategory">
                                 Add Category
@@ -77,12 +111,26 @@
                         </div>
                     </div>
 
+                    <!--....... ........................... Product Sub category .................................-->
+
 
                     <div class="row form-group">
                         <div class="col-md-3 form-level"><label>Product Sub Category <b class="mandetory_star">*</b> :</label></div>
-                        <div class="col-sm-6">
-                            <input class="form-control" type="text" id="sub_category_select_add_product_page">
-                            <input class="form-control" type="hidden" name="sub_category_id" id="sub_category_select_add_product_page-id">
+
+                          <div class="col-md-6" id="product-sub-category-error-dialog"> 
+                            {{Form::text('sub_category_name', '',  $attributes = array(
+                                                                   'class' => 'form-control',
+                                                          'data-validation'=>'alphanumeric', 'data-validation-allowing'=>'-_ " "',
+                                                'data-validation-error-msg'=>'Please Enter a Sub Category Name',
+                                      'data-validation-error-msg-container'=>'#product-sub-category-error-dialog',
+                                                                       'id'=>'sub_category_select_add_product_page'
+                                                                                   ))}}
+                             
+                            {{Form::hidden('sub_category_id', '',  $attributes = array(
+                                                                     'id'=>'category_select_add_product_page_id'
+                                                                          ))}}
+
+                            <span class="text-red">{{$errors->first('category_name')}}</span>
                         </div>
                         <div class="col-sm-3">
                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addSubCategory">
@@ -90,16 +138,15 @@
                             </button>
                         </div>
                     </div>
-
+                    
                     <div class="row form-group">
-                        <div class="col-md-3 form-level"><label>Entry Date<b class="mandetory_star">*</b> :</label></div>
-                        <div class="col-md-6"> 
-                            {!! Form::text('entry_date', null, array('type' => 'text', 'class' => 'form-control datepicker','placeholder' => 'Product Entry Date', 'id' => 'calendar')) !!}
-                            <span class="text-red">{{$errors->first('entry_date')}}</span>
+                        <div class="col-md-3 form-level"><label>Remarks:</label></div>
+                        <div class="col-md-6" id="product-name-error-dialog"> 
+                            {{Form::text('remarks', '', $attributes = array('class' => 'form-control'))}}
+                            <span class="text-red">{{$errors->first('remarks')}}</span>
                         </div>
                     </div>
-                </div><!-- /.box-body -->
-
+                  
 
                 <div class="box-footer">
                     <div class="row">
@@ -130,8 +177,7 @@
                                 <div class="modal-body">
                                     <div class="box-body">
                                         <div class="row form-group">
-                                            <div class="col-md-3 form-level"></div>
-                                            <div class="col-md-9" id="success_massege"> </div>
+                                            <div class="col-md-9 col-md-offset-3" id="success_massege_cat"> </div>
                                         </div>
 
                                         <div class="row form-group">
@@ -144,16 +190,6 @@
                                                                                                  'data-validation-error-msg-container'=>'#email-error-dialog',
                                                                                                  'data-validation-help'=>'Please Enter Alpha Numeric value. NB: dont use any operator sign'
                                                                                              ))}}
-                                            </div>
-                                        </div>
-                                        <div class="row form-group">
-                                            <div class="col-md-3 form-level"><label>Entry Date<b class="mandetory_star">*</b></label></div>
-                                            <div class="col-md-9" id="date-error-dialog"> 
-                                                {{Form::date('entry_date','', $attributes = array('class' => 'form-control',
-                                                                                              'id' => 'category_entry_date_id',
-                                                                                              'data-validation'=>'date',
-                                                                                              'data-validation-error-msg'=>'Please Enter a Valid Date',
-                                                                                              'data-validation-error-msg-container'=>'#date-error-dialog'))}}
                                             </div>
                                         </div>
                                     </div><!-- /.box-body -->
@@ -169,7 +205,7 @@
             </div>
 
 
-            <!--  ++++++++++++++++++++++++++++++++ Add Subcategory +++++++++++++++++++++++++++++++++++++ -->
+            <!--  ++++++++++++++++++++++++++++++++ Add Sub Category +++++++++++++++++++++++++++++++++++++ -->
 
 
             <div class="modal fade" id="addSubCategory" tabindex="-1" role="dialog" aria-labelledby="addSubCategoryLabel">
@@ -185,14 +221,22 @@
 
                                 <div class="box-body">
                                     <div class="row form-group">
-                                        <div class="col-md-3 form-level"></div>
-                                        <div class="col-md-9" id="success_massege"> </div>
+                                        <div class="col-md-9 col-md-offset-3" id="success_massege_sub_cat"> </div>
                                     </div>
                                     <div class="row form-group">
                                         <div class="col-md-3 form-level"><label>Category Name<b class="mandetory_star">*</b></label></div>
-                                        <div class="col-md-9"> 
-                                            <input class="form-control" type="text" id="select_category" placeholder="Type initial character of category name">
-                                            <input class="form-control" name="category_id" type="hidden" id="category_id">
+                                        <div class="col-md-9" id="product-category-modal-error-dialog"> 
+                                            {{Form::text('category_name', '',  $attributes = array(
+                                                                   'class' => 'form-control',
+                                                          'data-validation'=>'alphanumeric', 'data-validation-allowing'=>'-_ " "',
+                                                'data-validation-error-msg'=>'Type initial character of category name',
+                                      'data-validation-error-msg-container'=>'#product-category-modal-error-dialog',
+                                                                       'id'=>'select_category'
+                                                                                   ))}}
+                                            {{Form::hidden('category_id', '',  $attributes = array(
+                                                                     'id'=>'category_id'
+                                                                          ))}}
+                                          
                                         </div>
                                     </div>
 
@@ -208,17 +252,6 @@
                                                                                              ))}}
                                         </div>
                                     </div>
-                                    <div class="row form-group">
-                                        <div class="col-md-3 form-level"><label>Entry Date<b class="mandetory_star">*</b></label></div>
-                                        <div class="col-md-9" id="date-error-dialog-subcategory"> 
-                                            {{Form::date('entry_date','', $attributes = array('class' => 'form-control',
-                                                                                              'id' => 'sub_category_entry_date_id',
-                                                                                              'data-validation'=>'date',
-                                                                                              'data-validation-error-msg'=>'Please Enter a Valid Date',
-                                                                                              'data-validation-error-msg-container'=>'#date-error-dialog-subcategory'))}}
-                                        </div>
-                                    </div>
-
                                 </div><!-- /.box-body -->
                             </div>
                             <div class="modal-footer">

@@ -17,7 +17,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-Route::resource('api/product_category', 'ProductCategoryController');
-Route::get('/autocomplete/{id}', 'ProductCategoryController@autocomplete')->name('autocomplete');
-Route::get('/autocomplete_sub_cat/{id}/{sv}', 'ProductCategoryController@autocompleteSubCat')->name('autocomplete_sub_cat');
-Route::resource('api/product_sub_category', 'ProductSubCategoryController');
+Route::resource('/product_category', 'ProductCategoryController');
+Route::get('/autocompleteCat/{id}', 'ProductCategoryController@autocomplete')->name('autocomplete');
+Route::resource('/product_sub_category', 'ProductSubCategoryController');
+Route::get('/autocompleteSubCat/{id}/{sv}', 'ProductSubCategoryController@autocompleteSubCat')->name('autocompleteSubCat');

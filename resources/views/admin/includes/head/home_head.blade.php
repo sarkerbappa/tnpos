@@ -35,7 +35,6 @@
 
   <!-- Alert box -->
   <link rel="stylesheet" href="{{ asset('public/admin/dist/css/alertify.core.css') }}">
-  <link rel="stylesheet" href="{{ asset('public/admin/dist/css/alertify.default.css') }}">
   <!-- Alert box -->
   
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

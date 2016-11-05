@@ -15,12 +15,13 @@ class CreateProductsInfoTable extends Migration
     {
         Schema::create('products_info', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('Product_Code');
             $table->string('Product_Name');
             $table->text('Product_Description');
             $table->boolean('Serialized_Nonserialized');
             $table->string('Product_Category_Id');
             $table->string('Product_Sub_Category_Id');
-            $table->dateTime('Entry_DateTime');
+            $table->timestamp('Entry_DateTime');
             $table->string('Shop_Id');
             $table->string('Remarks');
             $table->timestamps();

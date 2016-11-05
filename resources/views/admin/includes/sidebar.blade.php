@@ -33,6 +33,9 @@
          <li>
              <a href="{{URL::route("allProductType")}}"><i class="fa fa-product-hunt"></i>Product Manager</a>
          </li>
+           <li>
+             <a href="{{URL::route("allStokIn")}}"><i class="fa fa-product-hunt"></i>Stock In Manager</a>
+         </li>
 
         <li class="header">LABELS</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>

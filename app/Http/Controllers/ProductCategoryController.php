@@ -40,13 +40,6 @@ class ProductCategoryController extends Controller
         return response($data);
     }
     
-    /**
-     * Autocomplete Subcategory form
-     */
-
-    public function autocompleteSubCat($value,$sv){
-        return response($value,$sv);
-    }
 
     /**
      * Store a newly created resource in storage.

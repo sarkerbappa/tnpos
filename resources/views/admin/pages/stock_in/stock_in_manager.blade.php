@@ -19,7 +19,7 @@
                 <div class="box-header"><i class="fa fa-product-hunt fa-2x"></i>
                     <h3 class="box-title"> All Product</h3>
                     <span class="pull-right">
-                        <a href="{{URL::route("addNewProductTypeForm")}}"  class="btn  btn-default ">Add New </a>
+                        <a href="{{URL::route("stockInForm")}}"  class="btn  btn-default ">Add New </a>
                         <button class="btn  btn-default"> Import XL</button> 
                         <button class="btn  btn-default"> Export XL</button>  
                     </span>
@@ -40,23 +40,23 @@
                         </thead>
                         <tbody>
                         <tr>
-                            @foreach ($all_products as $single_product)
-                        <td>{{$single_product->Product_Name}}</td>
-                        <td>{{$single_product->Product_Description}}</td>
-                        <td>{{$single_product->Entry_DateTime}}</td>
-                        <td>{{$single_product->Remarks}}</td>
+                          
+                        <td>kkk</td>
+                        <td>ll</td>
+                        <td>kk</td>
+                        <td>pp</td>
                         <td style="min-width:130px">
                             <span >
                                 <div class="action_element" style="float:left;">
-                                    <a class="btn btn-info btn-sm" href="{{ URL::action('ProductsController@productEditForm',[$single_product->id]) }}"><i class="fa fa-edit"></i> Edit</a>
+                                    <a class="btn btn-info btn-sm" href="#"><i class="fa fa-edit"></i> Edit</a>
                                 </div>
                                 <div class="action_element" >
-                                    <a  class="delete btn btn-sm btn-danger" href="{{ URL::action('ProductsController@productDelete',[$single_product->id])}}"><i class="fa fa-trash-o" ></i> Delete</a>
+                                    <a  class="delete btn btn-sm btn-danger" href="#"><i class="fa fa-trash-o" ></i> Delete</a>
                                 </div>
                             </span>
                         </td>
                         </tr>
-                        @endforeach
+                       
                         </tbody>
                         <tfoot>
                             <tr>

@@ -20,7 +20,16 @@ Route::get('/', function () {
 //Product Options
 Route::get('/allProductType', 'ProductsController@allProductType')->name('allProductType');
 Route::get('/addNewProductTypeForm', 'ProductsController@addNewProductTypeForm')->name('addNewProductTypeForm');
-Route::get('/addProductType', 'ProductsController@addProductType')->name('addProductType');
+Route::any('/addProduct', 'ProductsController@addProduct')->name('addProduct');
+Route::any('/productEditForm/{id}', 'ProductsController@productEditForm')->name('productEditForm');
+Route::any('/productEditForm', 'ProductsController@productEditSave')->name('productEditSave');
+Route::any('/productDelete/{id}', 'ProductsController@productDelete')->name('productDelete');
+
+
+// Stock in
+Route::get('/allStokIn', 'stockInFormController@allStokIn')->name('allStokIn');
+Route::any('/stockInForm', 'stockInFormController@stockInForm')->name('stockInForm');
+
 
 
 
