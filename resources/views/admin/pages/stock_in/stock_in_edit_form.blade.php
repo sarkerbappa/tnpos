@@ -27,7 +27,7 @@
                     <h3 class="box-title">Stock In</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                {{Form::open(array('route' => 'addProductStockIn', 'files' => true))}}
+                {{Form::open(array('route' => 'stockInEditSave', 'files' => true))}}
                 <div class="box-body">
                     <div class="row">
                         <br><br>
@@ -37,7 +37,6 @@
                                     <h4 class="stockIn_column_heading"> All [<b class="mandetory_star">*</b>] fields are mandatory.</h4> 
                                 </div>
                             </div>
-                            
                             <div class="row form-group">
                                 <div class="col-md-4 form-level"><label>Product Code <b class="mandetory_star">*</b> :</label></div>
                                 <div class="col-md-8" id="product-code-error-dialog"> 
@@ -45,14 +44,16 @@
                                     $entry_time = date("Y-m-d-m-s", time());
                                     ?>
                                     {{Form::hidden('shop_id', $value = "1",  $attributes = array('id'=>'shop_id'))}}
-                                    {{Form::hidden('product_id', '',  $attributes = array('id'=>'product_id'))}}
+                                    {{Form::hidden('id', $value = $stock_in_data_for_edit['product_info_from_stok']->id)}}
+                                    {{Form::hidden('product_id', $value = $stock_in_data_for_edit['product_info_from_stok']->Product_Id,  $attributes = array('id'=>'product_id'))}}
                                     {{Form::hidden('Entry_DateTime', $value = $entry_time,  $attributes = array('id'=>'entry_datetime'))}}
                                     
-                                    {{Form::text('product_code', '', $attributes = array('class' => 'form-control',
+                                    {{Form::text('product_code', $value = $stock_in_data_for_edit['product_info_from_stok']->Product_code, 
+                                                                 $attributes = array('class' => 'form-control',
                                                                                              'data-validation'=>'alphanumeric', 'data-validation-allowing'=>'-_ " "',
                                                                                              'data-validation-error-msg'=>'Please Enter a Product Code',
                                                                                              'data-validation-error-msg-container'=>'#product-code-error-dialog',
-                                                                                             'id' =>'product_code_stock_in_form',
+                                                                                             'id' =>'product_code_stock_in_edit_form',
                                                                                              'Placeholder'=>' Search Using Product Code / Product Name'
                                                                                              ))}}
                                     <span class="text-red">{{$errors->first('product_code')}}</span>
@@ -62,7 +63,7 @@
                             <div class="row form-group">
                                 <div class="col-md-4 form-level"><label>Product Name<b class="mandetory_star">*</b> :</label></div>
                                 <div class="col-md-8"> 
-                                    {{Form::text('product_name', '', $attributes = array('class' => 'form-control','id' =>'product_code_stock_in_name','disabled'))}}
+                                    {{Form::text('product_name',$value = $stock_in_data_for_edit['product_info_from_product_table']->Product_Name, $attributes = array('class' => 'form-control','id' =>'product_code_stock_in_edit_name','disabled'))}}
                                     <span class="text-red">{{$errors->first('product_name')}}</span>
                                 </div>
                             </div>
@@ -71,7 +72,7 @@
                             <div class="row form-group">
                                 <div class="col-md-4 form-level"><label>Stock Quantity:</label></div>
                                 <div class="col-md-8"> 
-                                    {{Form::number('stock_quantity', '', $attributes = array('class' => 'form-control','id'=>'stock_quantity_stockIn'))}}
+                                    {{Form::number('stock_quantity', $value = $stock_in_data_for_edit['product_info_from_stok']->Stock_Quantity, $attributes = array('class' => 'form-control','id'=>'stock_quantity_stockIn'))}}
                                     <span class="text-red">{{$errors->first('stock_quantity')}}</span>
                                 </div>
                             </div>
@@ -79,42 +80,42 @@
                              <div class="row form-group">
                                 <div class="col-md-4 form-level"><label>Buy Price<b class="mandetory_star">*</b> :</label></div>
                                 <div class="col-md-8"> 
-                                    {{Form::number('buy_price', '', $attributes = array('class' => 'form-control'))}}
+                                    {{Form::number('buy_price', $value = $stock_in_data_for_edit['product_info_from_stok']->Buy_Price, $attributes = array('class' => 'form-control'))}}
                                     <span class="text-red">{{$errors->first('buy_price')}}</span>
                                 </div>
                             </div>
                              <div class="row form-group">
                                 <div class="col-md-4 form-level"><label>Other Cost<b class="mandetory_star">*</b> :</label></div>
                                 <div class="col-md-8"> 
-                                    {{Form::number('other_cost', '', $attributes = array('class' => 'form-control'))}}
+                                    {{Form::number('other_cost', $value = $stock_in_data_for_edit['product_info_from_stok']->Other_Cost, $attributes = array('class' => 'form-control'))}}
                                     <span class="text-red">{{$errors->first('other_cost')}}</span>
                                 </div>
                             </div>
                              <div class="row form-group">
                                 <div class="col-md-4 form-level"><label>Reference<b class="mandetory_star">*</b> :</label></div>
                                 <div class="col-md-8"> 
-                                    {{Form::text('referance', '', $attributes = array('class' => 'form-control'))}}
+                                    {{Form::text('referance', $value = $stock_in_data_for_edit['product_info_from_stok']->Reference, $attributes = array('class' => 'form-control'))}}
                                     <span class="text-red">{{$errors->first('referance')}}</span>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-4 form-level"><label>To be Sale Unit Price<b class="mandetory_star">*</b>  :</label></div>
                                 <div class="col-md-8"> 
-                                    {{Form::number('to_be_sale_unite_price', '', $attributes = array('class' => 'form-control'))}}
+                                    {{Form::number('to_be_sale_unite_price', $value = $stock_in_data_for_edit['product_info_from_stok']->ToBe_Sale_Unit_Price, $attributes = array('class' => 'form-control'))}}
                                     <span class="text-red">{{$errors->first('to_be_sale_unite_price')}}</span>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-4 form-level"><label>Vat Percentage<b class="mandetory_star">*</b> : </label></div>
                                 <div class="col-md-8"> 
-                                    {{Form::number('vat_percentage', '', $attributes = array('class' => 'form-control'))}}
+                                    {{Form::number('vat_percentage',$value = $stock_in_data_for_edit['product_info_from_stok']->Product_VAT_Percentage, $attributes = array('class' => 'form-control'))}}
                                     <span class="text-red">{{$errors->first('vat_percentage')}}</span>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-4 form-level"><label>Remarks:</label></div>
                                 <div class="col-md-8"> 
-                                    {{Form::text('remarks', '', $attributes = array('class' => 'form-control'))}}
+                                    {{Form::text('remarks', $value = $stock_in_data_for_edit['product_info_from_stok']->Remarks, $attributes = array('class' => 'form-control'))}}
                                     <span class="text-red">{{$errors->first('remarks')}}</span>
                                 </div>
                             </div>
@@ -139,8 +140,13 @@
                                 <div class="col-md-12">
                                     <h4 class="box-title stockIn_column_heading"> Product Description </h4>
                                     <span>
-                                        <p id="product_desc_stock_in"> 
-                                           Product description  
+                                        <p id="product_desc_stock_edit_in"> 
+                                           @if(isset($stock_in_data_for_edit['product_info_from_product_table']->Product_Description))
+                                           {{ $stock_in_data_for_edit['product_info_from_product_table']->Product_Description }}
+                                           @else
+                                            {{'Product description'}}
+                                           @endif
+                                           
                                          </p>
                                     </span>
 
@@ -150,7 +156,11 @@
                               <div class="row">
                                   <div class="col-md-12">
                                        <h4 class="box-title stockIn_column_heading">Serialized/Non Serialized</h4>
-                                       <h4 id="serialized_value"> </h4>
+                                       @if($stock_in_data_for_edit['product_info_from_product_table']->Serialized_Nonserialized === 1)
+                                        <h4 id="serialized_edit_value"> <input type="checkbox" name="your-group" value="" checked="true" /> Serialized</h4>
+                                       @else
+                                       <h4 id="serialized_edit_value"><input type="checkbox" name="your-group" value="" checked="true" /> Non Serialized</h4>
+                                        @endif
                                   </div>
                               </div>
 

@@ -16,7 +16,7 @@ class CreateProductCategoryInfoTable extends Migration
         Schema::create('product_category_info', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Product_Category_Name');
-            $table->dateTime('Entry_DateTime');
+            $table->timestamp('Entry_DateTime');
             $table->string('Shop_Id');
             $table->timestamps();
         });

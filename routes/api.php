@@ -21,3 +21,6 @@ Route::resource('/product_category', 'ProductCategoryController');
 Route::get('/autocompleteCat/{id}', 'ProductCategoryController@autocomplete')->name('autocomplete');
 Route::resource('/product_sub_category', 'ProductSubCategoryController');
 Route::get('/autocompleteSubCat/{id}/{sv}', 'ProductSubCategoryController@autocompleteSubCat')->name('autocompleteSubCat');
+
+Route::get('/autocompleteProCode/{code}', 'stockInController@autocompleteProCode')->name('autocompleteProCode');
+Route::get('/autocompleteProName/{name}', 'stockInController@autocompleteProName')->name('autocompleteProName');

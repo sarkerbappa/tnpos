@@ -44,8 +44,8 @@
                         <td>{{$single_product->Product_Name}}</td>
                         <td>{{$single_product->Product_Description}}</td>
                         <td>{{$single_product->Entry_DateTime}}</td>
-                        <td>{{$single_product->Remarks}}</td>
-                        <td style="min-width:130px">
+                        <td class="remark">{{$single_product->Remarks}}</td>
+                        <td class="action_column">
                             <span >
                                 <div class="action_element" style="float:left;">
                                     <a class="btn btn-info btn-sm" href="{{ URL::action('ProductsController@productEditForm',[$single_product->id]) }}"><i class="fa fa-edit"></i> Edit</a>
@@ -72,8 +72,6 @@
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->
-
-
             <!-- /.box -->
         </div>
         <!-- /.col -->

@@ -9,6 +9,7 @@
 
 <section class="content">
 
+
     <div class="row">
         <div class="col-md-11">
             <!-- general form elements -->
@@ -28,7 +29,7 @@
                             $entry_time = date("Y-m-d-m-s",time());
                             ?>
                             {{Form::text('product_code', $value= $product['product_info']->Product_Code,  $attributes = array(
-                                                                     'id'=>'category_select_add_product_page_id_edit',
+                                                                     'id'=>'',
                                                                      'class' => 'form-control','disabled',
                                                                           ))}}
                             <span class="text-red">{{$errors->first('product_code')}}</span>
@@ -85,10 +86,13 @@
                     <div class="row form-group">
                         <div class="col-md-3 form-level"><label>Product Category <b class="mandetory_star">*</b> :</label></div>
                         <div class="col-md-6"> 
-                            {{Form::text('category_name', $value = $product['category']->Product_Category_Name,  $attributes = array(
-                                                                       'class' => 'form-control',
+                          
+                                                                          
+                           {{Form::text('category_name', $value = $product['category']->Product_Category_Name,  $attributes = array(
+                                                                   'class' => 'form-control',
                                                                        'id'=>'category_select_add_product_page_edit'
                                                                                    ))}}
+                             
                             {{Form::hidden('category_id', $value= $product['category']->id,  $attributes = array(
                                                                      'id'=>'category_select_add_product_page_id_edit'
                                                                           ))}}
@@ -110,10 +114,10 @@
                                                                                    ))}}
                              
                             {{Form::hidden('sub_category_id', $value= $product['sub_category']->id,  $attributes = array(
-                                                                     'id'=>'category_select_add_product_page_id_edit'
+                                                                     'id'=>'sub_category_select_add_product_page_id_edit'
                                                                           ))}}
 
-                            <span class="text-red">{{$errors->first('category_name')}}</span>
+                            <span class="text-red">{{$errors->first('sub_category_name')}}</span>
                         </div>
                        
                     </div>

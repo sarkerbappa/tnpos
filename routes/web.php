@@ -27,8 +27,13 @@ Route::any('/productDelete/{id}', 'ProductsController@productDelete')->name('pro
 
 
 // Stock in
-Route::get('/allStokIn', 'stockInFormController@allStokIn')->name('allStokIn');
-Route::any('/stockInForm', 'stockInFormController@stockInForm')->name('stockInForm');
+Route::get('/allStokIn', 'stockInController@allStokIn')->name('allStokIn');
+Route::any('/stockInForm', 'stockInController@stockInForm')->name('stockInForm');
+Route::any('/addProductStockIn', 'stockInController@addProductStockIn')->name('addProductStockIn');
+
+Route::any('/stockInEditForm/{id}', 'stockInController@stockInEditForm')->name('stockInEditForm');
+Route::any('/stockInEditSave', 'stockInController@stockInEditSave')->name('stockInEditSave');
+Route::any('/stockInDelete/{id}', 'stockInController@stockInDelete')->name('stockInDelete');
 
 
 

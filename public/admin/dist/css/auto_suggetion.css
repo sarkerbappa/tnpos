@@ -1,0 +1,17 @@
+ .ui-autocomplete {
+position: absolute;
+z-index: 2150000000 !important;
+cursor: default;
+border: 2px solid #ccc;
+padding: 5px 0;
+border-radius: 2px;
+}
+
+#category_select_add_product_page,
+#sub_category_select_add_product_page,
+#select_category{
+    background: url(../img/search.gif) no-repeat center center;
+    background-repeat: no-repeat;
+    background-size: 7% auto;
+    background-position: center right;
+}

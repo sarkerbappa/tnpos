@@ -30,39 +30,38 @@
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>Product Name</th>
-                                <th>Product Description</th>
-                                <th>Entry_DateTime</th>
+                                <th>Product Code</th>
+                                <th>Product Quantity</th>
+                                <th>Seal Price</th>
                                 <th>Remarks</th>
                                 <th>Action</th>
-
                             </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                          
-                        <td>kkk</td>
-                        <td>ll</td>
-                        <td>kk</td>
-                        <td>pp</td>
-                        <td style="min-width:130px">
+                       @foreach ($all_stockIn_product as $single_product)
+                       <tr>
+                        <td>{{$single_product->Product_code}}</td>
+                        <td>{{$single_product->Stock_Quantity}}</td>
+                        <td>{{$single_product->ToBe_Sale_Unit_Price}}</td>
+                        <td class="remark">{{$single_product->Remarks}}</td>
+                        <td class="action_column">
                             <span >
                                 <div class="action_element" style="float:left;">
-                                    <a class="btn btn-info btn-sm" href="#"><i class="fa fa-edit"></i> Edit</a>
+                                    <a class="btn btn-info btn-sm" href="{{ URL::action('stockInController@stockInEditForm',[$single_product->id]) }}"><i class="fa fa-edit"></i> Edit</a>
                                 </div>
                                 <div class="action_element" >
-                                    <a  class="delete btn btn-sm btn-danger" href="#"><i class="fa fa-trash-o" ></i> Delete</a>
+                                    <a  class="delete btn btn-sm btn-danger" href="{{ URL::action('stockInController@stockInDelete',[$single_product->id])}}"><i class="fa fa-trash-o" ></i> Delete</a>
                                 </div>
                             </span>
                         </td>
                         </tr>
-                       
+                       @endforeach
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Product Name</th>
-                                <th>Product Description</th>
-                                <th>Entry_DateTime</th>
+                                <th>Product Code</th>
+                                <th>Product Quantity</th>
+                                <th>Seal Price</th>
                                 <th>Remarks</th>
                                 <th>Action</th>
                             </tr>

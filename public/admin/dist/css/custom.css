@@ -68,5 +68,32 @@ and open the template in the editor.
     width:100%;
     height:auto;
 }
+.form-level{
+    text-align:right !important;
+}
+.mandetory_star{
+    color:#ff1b1b;
+}
+.stockIn_column_heading{
+    border:1px solid #bbb;
+    background: #00a65a;
+    padding: 5px;
+    color:#fff;
+    text-align: center;
+}
 
-
+#product_desc_stock_in{
+    text-align:justify; 
+    padding:10px 20px 10px 10px;
+    background: #eee;
+}
+td.action_column{
+    min-width: 150px !important;
+}
+.btn{
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
+.remark{
+     max-width: 200px !important;
+}

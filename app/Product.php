@@ -42,7 +42,7 @@ class Product extends Model {
     static function getProductForEdit($id){
         $edit_info['product_info']      = DB::table('products_info')->where('id', $id)->first();
         $edit_info['category']     = DB::table('product_category_info')->select('id', 'Product_Category_Name')->where('id', $edit_info['product_info']->Product_Category_Id)->first();
-        $edit_info['sub_category'] = DB::table('product_sub_category_info')->select('id','Product_Sub_Category_Name')->where('id', $edit_info['product_info']->Product_Category_Id)->first();
+        $edit_info['sub_category'] = DB::table('product_sub_category_info')->select('id','Product_Sub_Category_Name')->where('id', $edit_info['product_info']->Product_Sub_Category_Id)->first();
         return $edit_info;
     }
 
